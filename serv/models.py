@@ -1,14 +1,19 @@
 from django.db import models
-from sqlalchemy import ForeignKey
+
 
 class DDS_record(models.Model):
   
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.ForeignKey('Status', on_delete=models.SET_NULL, null=True, blank=True)
-    category = models.ForeignKey('category', on_delete = models.SET_NULL, null = True, blank = True)
+    status = models.ForeignKey('Status', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey('category', on_delete = models.SET_NULL, null = True)
     summ = models.IntegerField()
     comment = models.TextField(blank=True, null=True)
 
+   
+    type = models.ForeignKey('Type', on_delete=models.SET_NULL, null=True)
+   
+    subcategory = models.ForeignKey('subcategory', on_delete=models.SET_NULL, null=True)
+    
 class Status(models.Model):
     status_name = models.CharField(max_length=100)
      
